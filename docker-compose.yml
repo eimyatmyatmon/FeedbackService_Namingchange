@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  app:
+    container_name: feedback
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # args:
+    image: feedback
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    ports:
+      # - '${APP_PORT:-80}:80'
+      - '80:80'
+    env_file:
+      - .env
+    restart: always
+    networks:
+      - dotnet-network
+networks:
+  dotnet-network:
+    name: dotnet-network
+    # external: true
